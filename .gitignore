@@ -1,0 +1,6 @@
+*.sqlite3
+*.swp
+*.swo
+*.swn
+.DS_Store
+settings.py
