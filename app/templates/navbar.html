@@ -1,0 +1,20 @@
+<div style="background:#cfcfcf;border-bottom:2px solid black;padding-bottom:5px;"> 
+  <a href="{% url home %}">Home</a> 
+  {% if user.is_authenticated %}
+    <a href="{% url logout %}">Logout</a>
+    Logged in as: {{ user.username }}
+  {% else %}
+    <a href="{% url register %}">Register</a>   
+    <form method = "POST" action = "/login/">
+      {% csrf_token %}
+      {{ login_form }}
+      <input type="submit" />
+    </form>
+  {% endif %}
+</div>
+
+{% if messages %}
+  {% for message in messages %}
+  {{ message|safe }}
+  {% endfor %}
+{% endif %}
