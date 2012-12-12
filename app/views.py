@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from app.forms import LoginForm, RegisterForm, AskForm, AnswerForm
-from app.models import Question, Answer
+from app.models import Question, Answer, CustomUser
 from django.core.urlresolvers import reverse
 
 def home(request):
@@ -66,10 +66,10 @@ def question(request, question_id):
   return render(request, 'question.html', {'question':Question.objects.get(id=question_id), 'answer_form':AnswerForm, 'answers':Question.objects.answers(question_id)})
 
 def user(request, user_id):
-  user = User.objects.get(id=user_id)
+  user = CustomUser.objects.get(id=user_id)
   questions = user.question_set.all()
   answers = user.answer_set.all()
-  return render(request, 'user.html', {'user':user, 'questions':questions, 'answers':answers})
+  return render(request, 'user.html', {'profile_owner':user, 'questions':questions, 'answers':answers})
 
 def edit_user(request, user_id):
   return render(request, 'edit_user.html')

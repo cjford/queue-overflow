@@ -1,12 +1,12 @@
 <div style="background:#cfcfcf;border-bottom:2px solid black;padding-bottom:5px;"> 
-  <a href="{% url home %}">Home</a> 
+  <a href="{% url 'home' %}">Home</a> 
   {% if user.is_authenticated %}
-    <a href="{% url logout %}">Logout</a>
+    <a href="{% url 'logout' %}">Logout</a>
     Logged in as: {{ user.username }}
-    <a href="{% url user user.id%}"> Edit Profile </a>
-    <a href="{% url ask %}">Ask a Question</a>
+    <a href="{% url 'user' user.id%}"> Edit Profile </a>
+    <a href="{% url 'ask' %}">Ask a Question</a>
   {% else %}
-    <a href="{% url register %}">Register</a>   
+    <a href="{% url 'register' %}">Register</a>   
     <form method = "POST" action = "/login/">
       {% csrf_token %}
       {{ login_form }}

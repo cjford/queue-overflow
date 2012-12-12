@@ -1,14 +1,14 @@
 {% include 'navbar.html' %}
-<h1>{{ user.username }} </h1>
-{{ user.first_name }} {{user.last_name }}
+<h1>{{ profile_owner.username }} </h1>
+{{ profile_owner.first_name }} {{profile_owner.last_name }}
 <h2> Questions </h2>
 {% for question in questions %}
-  <a href="{% url question question.id %}">{{ question.title }}</a>
+  <a href="{% url 'question' question.id %}">{{ question.title }}</a>
   <hr/>
 {% endfor %}
 
 <h2> Answers </h2>
 {% for answer in answers %}
-  <a href="{% url question answer.question_id %}">{{ answer.content }}</a>
+  <a href="{% url 'question' answer.question_id %}">{{ answer.content }}</a>
   <hr/>
 {% endfor %}
