@@ -1,0 +1,21 @@
+{% include 'navbar.html' %}
+<h1>{{ question.title }}</h1>
+{{ question.datetime }}
+<p>{{ question.content }}</p>
+
+<h1> Answers </h1>
+{% for answer in answers %}
+  <h3><a href="{% url user answer.user_id %}" >{{ answer.username }}</a></h3>
+  <em>{{ answer.datetime }}</em>
+  <p>{{ answer.content }}</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+  <h1> Submit an Answer </h1>
+  <form method="POST" action="/answer/">
+  {% csrf_token %}
+  {{ answer_form }}
+  <input type="hidden" name="question_id" value="{{ question.id }}"/>
+  <input type="hidden" name="user_id" value="{{ user.id }}"/>
+  <input type="submit" />
+{% endif %}

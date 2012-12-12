@@ -1,2 +1,10 @@
 {% include 'navbar.html' %}
 <h1> Home </h1>
+
+{% for question in recent_questions %}
+  {{ question.id }}
+  <a href="{% url question question.id %}"> <h3> {{ question.title }} </h3></a>
+  <em> {{ question.datetime }} </em>
+  <p> {{ question.content }}
+  <hr/>
+{% endfor %}

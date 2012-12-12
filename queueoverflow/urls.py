@@ -10,7 +10,12 @@ urlpatterns = patterns('',
     url(r'^$', 'app.views.home', name='home'),
     url(r'^logout/$', 'app.views.logout', name='logout'),
     url(r'^login/$', 'app.views.login', name='login'),
-    url(r'^register/$', 'app.views.register', name='register')
+    url(r'^register/$', 'app.views.register', name='register'),
+    url(r'^ask/$', 'app.views.ask', name='ask'),
+    url(r'^answer/$', 'app.views.answer', name='answer'),
+    url(r'^question/(?P<question_id>\d+)/$', 'app.views.question', name='question'),
+    url(r'^user/(?P<user_id>\d+)/$', 'app.views.user', name='user'),
+    url(r'^edit_user/(?P<user_id>\d+)/$', 'app.views.edit_user', name='edit_user')
     # url(r'^queueoverflow/', include('queueoverflow.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
