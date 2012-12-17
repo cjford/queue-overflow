@@ -1,0 +1,69 @@
+#messages {
+  text-align:center; 
+}
+
+#navbar {
+  background:#cfcfcf;
+  border-bottom:2px solid black;
+  padding-bottom:5px;
+  padding:10px;
+  text-align:center;
+}
+
+#wrapper {
+  padding:0px 50px 50px 50px;
+}
+
+.odd {
+  background:#cfcfcf;
+}
+
+.selected {
+  border-left:1px solid black;
+  border-right:1px solid black;
+  border-top:1px solid black;
+}
+
+.title {
+  text-align:left;
+}
+
+a {
+  color:#FF6600;
+}
+
+body {
+  font-family:Georgia;
+  margin:0px;
+}
+
+form {
+}
+
+h3, h4, form, hr {
+  margin:0px;
+}
+
+p {
+  margin-bottom:13px;
+  margin-top:0px;
+}
+
+table {
+  border-collapse:collapse;
+  margin-left:auto;
+  margin-right:auto;
+  min-width:1050px;
+}
+
+td {
+  height:45px;
+  max-width:600px;
+  padding:0px 5px 0px 5px;
+  text-align:center;
+}
+
+tr {
+  border:1px solid black;
+}
+
