@@ -1,10 +1,28 @@
 {% include 'navbar.html' %}
-<h1> Home </h1>
 
-{% for question in recent_questions %}
-  {{ question.id }}
-  <a href="{% url 'question' question.id %}"> <h3> {{ question.title }} </h3></a>
-  <em> {{ question.datetime }} </em>
-  <p> {{ question.content }}
-  <hr/>
-{% endfor %}
+<h1></h1>
+<a {% if sort == 'top' %} class="selected" {% endif %}href="{% url 'home' 'top' %}">Top</a>
+<a {% if sort == 'new' %} class="selected" {% endif %}href="{% url 'home' 'new' %}">New</a>
+<a {% if sort == 'active' %} class="selected" {% endif %}href="{% url 'home' 'active' %}">Active</a>
+<a {% if sort == 'unanswered' %} class="selected" {% endif %}href="{% url 'home' 'unanswered' %}">Unanswered</a>
+<hr/><hr/><br/>
+<table>
+  <tr>
+    <th> Title </th>
+    <th> Author </th>
+    <th> Date </th>
+    <th> Answers </th>
+    <th> Votes </th>
+    <th></th>
+  <tr>
+  {% for question in questions %}
+    <tr class="{% cycle 'odd' 'even' %}">
+      <td class="title"> <a href="{% url 'question' question.id %}"> <span title="{{ question.content|truncatechars:130 }}"> {{ question.title }} </span></a></td>
+      <td> <a href="{% url 'user' question.user_id %}">{{ question.username }}</a></td>
+      <td>{{ question.datetime }}</td>
+      <td>{{ question.answer_count }}</td>
+      <td>{{ question.votes }}</td>
+      <td>{% include 'qvote_form.html' %}</td>
+    </tr>
+  {% endfor %}
+</table>

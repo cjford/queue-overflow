@@ -1,0 +1,29 @@
+
+{% include 'navbar.html' %}
+
+{% if activate_request %}
+
+  Submit your user information to send an activation email.
+  <form method="POST" action="">
+    {% csrf_token %}
+    Username: <input type="text" name="username" />
+    Password: <input type="password" name="password" />
+    <input type="submit" />
+  </form>
+
+{% else %}
+
+  Enter your password to activate account<br/>
+  <form method="POST" action= "">
+    {% csrf_token %}
+    <input type="text" name="password" />
+    <input type="submit" />
+  </form>
+
+{% endif %}
+
+{% if messages %}
+  {% for message in messages %}
+  {{ message|safe }}
+  {% endfor %}
+{% endif %}

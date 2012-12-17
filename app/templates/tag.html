@@ -1,0 +1,10 @@
+{% include 'navbar.html' %}
+
+<h1> {{ tag.name }} </h1>
+<hr/>
+{% for question in questions %}
+  <a href="{% url 'question' question.id %}"> {{ question.title }} </a>
+  <em> {{ question.datetime }} </em>
+  <span> {{ question.content|truncatechars:100 }} </span>
+  <hr/>
+{% endfor %}

@@ -1,13 +1,28 @@
+{% load vote_filters %}
 {% include 'navbar.html' %}
+{% include 'qvote_form.html' %}<br/>
+Votes: {{ question.votes }} <br/>
+Tags: {% for tag in question.tags.all %}
+
+<a href="{% url 'tag' tag.id %}">{{tag.name}}</a>
+{% endfor %}<br/>
+
+{% if user.is_authenticated and user.id == question.user_id %}
+  <a href="{% url 'edit_question' question.id %}">Edit Question</a>
+{% endif %}
+
 <h1>{{ question.title }}</h1>
-{{ question.datetime }}
+By: <a href="{% url 'user' question.user_id %}" >{{ question.username }}</a> - {{ question.datetime }}
 <p>{{ question.content }}</p>
 
 <h1> Answers </h1>
+<hr/>
 {% for answer in answers %}
-  <h3><a href="{% url 'user' answer.user_id %}" >{{ answer.username }}</a></h3>
+  {% include 'avote_form.html' %}
+  By: <a href="{% url 'user' answer.user_id %}" >{{ answer.username }}</a> -
   <em>{{ answer.datetime }}</em>
   <p>{{ answer.content }}</p>
+<hr/>
 {% endfor %}
 
 {% if user.is_authenticated %}

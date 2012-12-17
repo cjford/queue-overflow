@@ -1,0 +1,7 @@
+{% include 'navbar.html' %}
+
+<h1> Tags </h1>
+<hr/>
+{% for tag in tags %}
+  <a href="{% url 'tag' tag.id %}">{{ tag.name }}</a>
+{% endfor %}

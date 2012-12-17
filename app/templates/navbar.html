@@ -1,22 +1,38 @@
-<div style="background:#cfcfcf;border-bottom:2px solid black;padding-bottom:5px;"> 
-  <a href="{% url 'home' %}">Home</a> 
+{% load staticfiles %}
+
+<link type="text/css" rel="stylesheet" href="{% static 'style.css' %}" />
+<div id="navbar"> 
+  <a href="{% url 'home' %}">Home</a> |
+  <a href="{% url 'tags' %}">Tags</a> |
+  <a href="{% url 'badges' %}">Badges</a> |
+
   {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a>
-    Logged in as: {{ user.username }}
-    <a href="{% url 'user' user.id%}"> Edit Profile </a>
-    <a href="{% url 'ask' %}">Ask a Question</a>
+
+    <a href="{% url 'edit_user' user.id%}"> Edit Profile </a> |
+    <a href="{% url 'ask' %}">Ask a Question</a> |
+    <a href="{% url 'logout' %}">Logout</a> |
+    Logged in as: <a href="{% url 'user' user.id %}">{{ user.username }}</a>
+
   {% else %}
-    <a href="{% url 'register' %}">Register</a>   
+
+    <a href="{% url 'register' %}">Register</a> |  
+    <a href="{% url 'reset_password' %}">Forgot Password?</a>   
+    <br/>
     <form method = "POST" action = "/login/">
       {% csrf_token %}
       {{ login_form }}
       <input type="submit" />
     </form>
+
   {% endif %}
 </div>
 
+<div id="messages">
 {% if messages %}
   {% for message in messages %}
   {{ message|safe }}
   {% endfor %}
 {% endif %}
+</div>
+
+<div id=wrapper>

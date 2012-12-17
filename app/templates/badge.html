@@ -1,0 +1,9 @@
+{% include 'navbar.html' %}
+
+<h1> {{ badge.name }} </h1>
+<p> {{ badge.description }} </p>
+<h3> Users who have earned this badge </h3>
+<hr/>
+{% for user in users %}
+  <a href="{% url 'user' user.id %}"> {{ user.username }}</a>
+{% endfor %}

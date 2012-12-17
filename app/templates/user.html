@@ -1,14 +1,25 @@
 {% include 'navbar.html' %}
+
 <h1>{{ profile_owner.username }} </h1>
-{{ profile_owner.first_name }} {{profile_owner.last_name }}
+First Name: {{ profile_owner.first_name }} <br/>
+Last Name: {{profile_owner.last_name }} <br/>
+Age: {{profile_owner.age }} <br/>
+Location: {{profile_owner.location }} <br/>
+Badges: 
+{% for badge in profile_owner.badges.all %}
+  <a href="{% url 'badge' badge.id %}">{{ badge.name }}</a>
+{% endfor %}
+
 <h2> Questions </h2>
 {% for question in questions %}
-  <a href="{% url 'question' question.id %}">{{ question.title }}</a>
+  <a href="{% url 'question' question.id %}">{{ question.title }}</a> -
+  <span> {{ question.content|truncatechars:100 }} </span>
   <hr/>
 {% endfor %}
 
 <h2> Answers </h2>
 {% for answer in answers %}
-  <a href="{% url 'question' answer.question_id %}">{{ answer.content }}</a>
+  <a href="{% url 'question' answer.question_id %}">{{ answer.question.title }}</a> -
+  <span> {{ answer.content|truncatechars:100 }} </span>
   <hr/>
 {% endfor %}

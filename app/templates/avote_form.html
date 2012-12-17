@@ -1,0 +1,23 @@
+{% load vote_filters %}
+
+Votes: {{ answer.votes }}<br/>
+{% if answer.user_id != user.id and user.is_authenticated%}
+
+  <form method="POST" action="/vote/">
+    {% csrf_token %}
+    <input id="upvote" type="radio" name="vote" value=1 onclick="this.form.submit();" 
+    {% if answer|current_vote:user.id == 1 %} checked {% endif %} /> 
+    <label for="upvote"> +1 </label> <br/>
+
+    <input id="downvote" type="radio" name="vote" value=-1 onclick="this.form.submit();" 
+    {% if answer|current_vote:user.id == -1 %}checked{% endif %} />
+    <label for="downvote"> &nbsp-1 </label>
+
+    <input type="hidden" name="user_id" value="{{ user.id }}" />
+    <input type="hidden" name="item_id" value="{{ answer.id }}" />
+    <input type="hidden" name="item_type" value=2 />
+    <input type="hidden" name="current_page" value="{{ current_page }}" />
+    <br/>
+  </form>
+
+{% endif %}

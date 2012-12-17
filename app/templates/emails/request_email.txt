@@ -1,0 +1,3 @@
+Greetings {{ username }},
+Please copy and paste follow the url to reset your password. It will expire in 24 hours. 
+{{ url }}

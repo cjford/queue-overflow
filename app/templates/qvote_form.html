@@ -1,0 +1,22 @@
+{% load vote_filters %}
+
+{% if question.user_id != user.id and user.is_authenticated %}
+
+  <form method="POST" action="/vote/">
+    {% csrf_token %}
+    <label for="upvote"> +1 </label>
+    <input id="upvote" type="radio" name="vote" value=1 onclick="this.form.submit();" 
+    {% if question|current_vote:user.id == 1 %}checked{% endif %} /><br/>
+
+    <label for="downvote"> &nbsp-1 </label>
+    <input id="downvote" type="radio" name="vote" value=-1 onclick="this.form.submit();"
+    {% if question|current_vote:user.id == -1 %}checked{% endif %} />
+
+    <input type="hidden" name="user_id" value={{user.id}} />
+    <input type="hidden" name="item_id" value={{question.id}} />
+    <input type="hidden" name="item_type" value=1 />
+    <input type="hidden" name="current_page" value="{{current_page}}" />
+  </form>
+
+{% endif %}
+

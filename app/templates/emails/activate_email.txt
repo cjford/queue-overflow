@@ -1,0 +1,4 @@
+Greetings {{username}},<br/>
+Please copy and paste the following url to activate your account. This will
+expire in 24 hours.
+{{ url }}

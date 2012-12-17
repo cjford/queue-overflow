@@ -1,0 +1,7 @@
+{% include 'navbar.html' %}
+
+<h1>Badges</h1>
+<hr/>
+{% for badge in badges %}
+  <a href="{% url 'badge' badge.id %}"> {{ badge.name }}</a>
+{% endfor %}
