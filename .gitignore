@@ -1,7 +1,8 @@
-*.sqlite3
+sqlite3
 *.swp
 *.swo
 *.swn
 *.pyc
 .DS_Store
-settings.py
+initial_data.json
+venv
