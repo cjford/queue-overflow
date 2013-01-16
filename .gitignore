@@ -4,5 +4,4 @@ sqlite3
 *.swn
 *.pyc
 .DS_Store
-initial_data.json
 venv
